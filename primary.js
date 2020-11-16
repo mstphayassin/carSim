@@ -2,11 +2,17 @@
 let canvas = document.getElementById("myCanvas")
 let ctx = canvas.getContext('2d')
 
+let carMode = true
+let busMode = false
+let longBusMode = false
+
+let radios = document.getElementsByName('vehicle');
+
 let player = {
 	x: 400,
 	y: 300,
 	width: 30,
-	length: 40,
+	length: 50,
 	direction: 0,
 	turnSpd: Math.PI,
 	wheelDir: 0,
@@ -102,6 +108,25 @@ let lastTime = Date.now()
 let dt
 
 const update = () => {
+	for (var i = 0, length = radios.length; i < length; i++) {
+  		if (radios[i].checked) {
+			switch(radios[i].value) {
+			case "car":
+				player.length = 50;
+				player.turnSpd = Math.PI;
+				break;
+			case "bus":
+				player.length = 100;
+				player.turnSpd = Math.PI/2;
+				break;
+			case "longBus":
+				player.length = 150;
+				player.turnSpd = Math.PI/3;
+				break;
+			}
+			break;
+  		}
+	}
 	now = Date.now()
 	dt = (now - lastTime)/1000.0
 	lastTime = now

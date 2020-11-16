@@ -1,4 +1,3 @@
-
 let canvas = document.getElementById("myCanvas")
 let ctx = canvas.getContext('2d')
 
@@ -7,6 +6,9 @@ let busMode = false
 let longBusMode = false
 
 let radios = document.getElementsByName('vehicle');
+
+let bgImage = new Image();
+bgImage.src = 'bg.png'
 
 let player = {
 	x: 400,
@@ -141,8 +143,9 @@ const update = () => {
 	}
 	
 	ctx.clearRect(0,0,canvas.width,canvas.height) // erase everything
-	ctx.fillStyle = '#ffffff'; // set background color
-	ctx.fillRect(0,0,canvas.width,canvas.height); // fill background
+	//ctx.fillStyle = '#ffffff'; // set background color
+	//ctx.fillRect(0,0,canvas.width,canvas.height); // fill background
+	ctx.drawImage(bgImage, 0,0)
 	
 	for (let i = 0; i < trailParticles.length; i++) {
 		ctx.fillStyle = trailParticles[i].color
